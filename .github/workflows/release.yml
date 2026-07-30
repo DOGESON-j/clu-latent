@@ -37,7 +37,7 @@ jobs:
         run: |
           shasum -a 256 dist/* release-assets/clulatent-v1-demo.clulatent \
             > release-assets/SHA256SUMS.txt
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           name: CLULatent ${{ github.ref_name }}
           body_path: release-assets/RELEASE_NOTES_V1.0.0.md
