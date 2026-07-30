@@ -1,0 +1,66 @@
+name: Release
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: pip
+      - run: python -m pip install -e ".[visual,dev]"
+      - run: python -m pytest -q
+      - run: python -m build
+      - run: python -m twine check dist/*
+      - run: clulatent conformance run
+      - run: mkdir -p release-assets
+      - run: clulatent demo --no-browser -o release-assets/clulatent-v1-demo.clulatent
+      - name: Smoke distributions
+        run: |
+          python -m venv /tmp/wheel-smoke
+          /tmp/wheel-smoke/bin/pip install dist/*.whl
+          /tmp/wheel-smoke/bin/clulatent conformance run
+          python -m venv /tmp/sdist-smoke
+          /tmp/sdist-smoke/bin/pip install dist/*.tar.gz
+          /tmp/sdist-smoke/bin/clulatent conformance run
+      - name: Checksums
+        run: |
+          shasum -a 256 dist/* release-assets/clulatent-v1-demo.clulatent \
+            > release-assets/SHA256SUMS.txt
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: CLULatent ${{ github.ref_name }}
+          body_path: release-assets/RELEASE_NOTES_V1.0.0.md
+          files: |
+            dist/*
+            release-assets/clulatent-v1-demo.clulatent
+            release-assets/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-distributions
+          path: dist/*
+
+  publish-pypi:
+    if: ${{ vars.PYPI_TRUSTED_PUBLISHING == 'true' }}
+    needs: build-release
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-distributions
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1

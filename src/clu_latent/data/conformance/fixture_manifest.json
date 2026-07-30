@@ -1,0 +1,21 @@
+{
+  "schema": "clulatent.conformance.fixtures.v1",
+  "fixtures": [
+    {"name": "valid_minimal", "kind": "directory", "expected": "COMPATIBLE", "requirement": "baseline"},
+    {"name": "valid_full", "kind": "directory", "expected": "COMPATIBLE", "requirement": "representative-evidence"},
+    {"name": "valid_without_agent_read", "kind": "directory", "expected": "COMPATIBLE", "requirement": "optional-agent-read"},
+    {"name": "valid_unknown_future_track", "kind": "directory", "expected": "COMPATIBLE", "requirement": "future-safe-track"},
+    {"name": "invalid_missing_manifest", "kind": "directory", "expected": "INCOMPATIBLE", "requirement": "manifest"},
+    {"name": "invalid_malformed_manifest_json", "kind": "directory", "expected": "INCOMPATIBLE", "requirement": "manifest"},
+    {"name": "invalid_unsafe_track_path", "kind": "directory", "expected": "INCOMPATIBLE", "requirement": "safe-path"},
+    {"name": "invalid_missing_track_file", "kind": "directory", "expected": "INCOMPATIBLE", "requirement": "declared-track"},
+    {"name": "invalid_malformed_jsonl", "kind": "directory", "expected": "INCOMPATIBLE", "requirement": "track-jsonl"},
+    {"name": "invalid_package_id_mismatch", "kind": "directory", "expected": "INCOMPATIBLE", "requirement": "package-id"},
+    {"name": "invalid_stale_required_index", "kind": "directory", "expected": "INCOMPATIBLE", "requirement": "index-freshness"},
+    {"name": "invalid_broken_index_artifact_hash", "kind": "directory", "expected": "INCOMPATIBLE", "requirement": "index-artifact-hash"},
+    {"name": "invalid_evidence_reference", "kind": "directory", "expected": "INCOMPATIBLE", "requirement": "evidence-reference"},
+    {"name": "valid_portable_archive", "kind": "archive", "expected": "COMPATIBLE", "requirement": "portable-archive"},
+    {"name": "invalid_archive_unsafe_member", "kind": "archive", "expected": "INCOMPATIBLE", "requirement": "archive-safe-path"},
+    {"name": "invalid_archive_limits", "kind": "archive", "expected": "INCOMPATIBLE", "requirement": "archive-limits"}
+  ]
+}

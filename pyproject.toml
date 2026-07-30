@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=77.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clu-latent"
+version = "1.0.0"
+description = "Local-first playable media evidence packages for humans and agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+authors = [{name = "Jayden Kambule"}]
+keywords = ["video", "evidence", "media", "ai-agents", "file-format", "local-first"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+    "typer>=0.12",
+    "rich>=13.0",
+    "pydantic>=2.6",
+]
+
+[project.scripts]
+clulatent = "clu_latent.cli:app"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "build>=1.2",
+    "twine>=6.0",
+    "pip-audit>=2.7",
+    "bandit>=1.7",
+]
+# Optional ML dependencies (Phase 1.7B/1.7C). The base package and
+# `clulatent ingest` work fully without either installed; they're only
+# imported/used when a caller explicitly passes --vad or --transcribe.
+vad = [
+    "silero-vad>=5.1",
+]
+whisper = [
+    "faster-whisper>=1.0",
+]
+# Phase 3.15: optional image-difference dependency for the visual
+# change evidence lane. The base package and every read-only
+# `clulatent visual-change` command work fully without it installed;
+# it is only imported/used by `visual-change analyze`, which computes
+# bounded, non-semantic pixel-difference metrics between adjacent
+# keyframes (never object/scene/caption inference).
+visual = [
+    "Pillow>=10.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+clu_latent = ["py.typed", "data/conformance/*.json"]
+
+[project.urls]
+Homepage = "https://github.com/DOGESON-j/clu-latent"
+Documentation = "https://github.com/DOGESON-j/clu-latent/tree/main/docs"
+Issues = "https://github.com/DOGESON-j/clu-latent/issues"
+Changelog = "https://github.com/DOGESON-j/clu-latent/blob/main/CHANGELOG.md"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

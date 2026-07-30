@@ -1,0 +1,5 @@
+{
+  "schema": "clulatent.conformance.fixtures.v1",
+  "source": "src/clu_latent/data/conformance/fixture_manifest.json",
+  "note": "The installable manifest is authoritative; this public mirror documents the bundled suite."
+}

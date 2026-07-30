@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a reproducible CLULatent problem using synthetic data.
+body:
+  - type: textarea
+    id: version
+    attributes:
+      label: Version and platform
+      description: Paste `clulatent --version` and your operating system.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Synthetic reproduction
+      description: Do not attach private media, credentials, or personal data.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and actual result
+    validations:
+      required: true
