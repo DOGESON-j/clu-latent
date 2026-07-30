@@ -1,0 +1,46 @@
+name: Publish PyPI (verified v1.0.0 assets)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish-pypi:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Download existing v1.0.0 release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p verify dist
+          gh release download v1.0.0 \
+            --repo "${{ github.repository }}" \
+            --dir verify \
+            --pattern "clu_latent-1.0.0-py3-none-any.whl" \
+            --pattern "clu_latent-1.0.0.tar.gz" \
+            --pattern "SHA256SUMS.txt"
+
+      - name: Verify wheel and sdist against SHA256SUMS.txt
+        working-directory: verify
+        run: |
+          grep -E '  (clu_latent-1\.0\.0-py3-none-any\.whl|clu_latent-1\.0\.0\.tar\.gz)$' SHA256SUMS.txt > selected.sha256
+          if [ "$(wc -l < selected.sha256)" -ne 2 ]; then
+            echo "::error::Expected checksum entries for both the wheel and sdist in SHA256SUMS.txt, found $(wc -l < selected.sha256)"
+            exit 1
+          fi
+          sha256sum -c selected.sha256
+
+      - name: Stage verified distributions for publish
+        run: |
+          cp verify/clu_latent-1.0.0-py3-none-any.whl dist/
+          cp verify/clu_latent-1.0.0.tar.gz dist/
+
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist
