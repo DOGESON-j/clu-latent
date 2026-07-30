@@ -42,6 +42,7 @@ def test_ingest_cleans_up_temp_dir_and_writes_failure_receipt_on_build_failure(
     output_path = tmp_path / "out.clulatent"
 
     monkeypatch.setattr(ingest_mod.ffmpeg_tools, "check_tools_available", lambda: None)
+    monkeypatch.setattr(ingest_mod, "resolve_tool", lambda _name: "ffprobe")
 
     def _boom(*args, **kwargs):
         raise ingest_mod.ffmpeg_tools.FfmpegExecutionError(

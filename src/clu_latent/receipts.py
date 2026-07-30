@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 import uuid
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -64,7 +64,7 @@ class ReceiptLog:
         self._entries.append(
             {
                 "id": str(uuid.uuid4()),
-                "timestamp": datetime.now(UTC).isoformat(),
+                "timestamp": datetime.now(timezone.utc).isoformat(),
                 "tool": {"name": TOOL_NAME, "version": TOOL_VERSION},
                 "operation": operation,
                 "status": status,

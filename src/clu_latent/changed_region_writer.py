@@ -42,7 +42,7 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import dataclass, field
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -114,7 +114,7 @@ class ChangedRegionReceipt:
     change_scope_counts: dict[str, int] = field(default_factory=dict)
     warnings: list[str] = field(default_factory=list)
     failure_details: str | None = None
-    timestamp: str = field(default_factory=lambda: datetime.now(UTC).isoformat())
+    timestamp: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     evidence_not_truth_reminder: str = _EVIDENCE_NOT_TRUTH_REMINDER
 
     def to_dict(self) -> dict[str, Any]:

@@ -22,7 +22,7 @@ import shutil
 import tempfile
 import uuid
 from dataclasses import asdict, dataclass
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from . import ffmpeg_tools, tracks as tracks_mod
@@ -536,7 +536,7 @@ def _build_package(
 
     # 9. Assemble the manifest
     package_id = str(uuid.uuid4())
-    created_at = datetime.now(UTC).isoformat()
+    created_at = datetime.now(timezone.utc).isoformat()
 
     manifest = Manifest(
         package_id=package_id,
