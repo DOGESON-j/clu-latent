@@ -1,5 +1,9 @@
 # CLULatent
 
+<p align="center">
+  <img src="docs/assets/readme/clu-latent-hero.svg" alt="CLU Latent: local-first portable media evidence packages for humans and agents" width="100%">
+</p>
+
 CLULatent turns video and media into a validated, timestamped, reviewable
 evidence package that humans can play and software agents can inspect through
 bounded evidence windows, references, caveats, and retrieval hooks.
@@ -59,6 +63,10 @@ python -m pytest
 ```
 
 ## What a package contains
+
+<p align="center">
+  <img src="docs/assets/readme/package-anatomy.svg" alt="CLU Latent V1 package anatomy showing manifest, media, events, index, and integrity layers" width="78%">
+</p>
 
 A package records a manifest and source hash facts, timestamped JSONL evidence
 tracks, receipts, a derived search index, optional keyframes, package-index and
@@ -151,6 +159,10 @@ external feedback.
 CLULatent is distributed under the BSD 3-Clause license.
 
 ## Documentation
+
+<p align="center">
+  <img src="docs/assets/readme/documentation-contribute.svg" alt="CLU Latent documentation and contribution overview" width="100%">
+</p>
 
 - [Quickstart](docs/QUICKSTART.md)
 - [V1 format](docs/FORMAT_V1.md)
