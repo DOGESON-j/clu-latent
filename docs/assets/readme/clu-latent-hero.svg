@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">CLU Latent project overview</title>
+<desc id="desc">Local-first portable media evidence packages for humans and agents.</desc>
+
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#f8fbff"/>
+    <stop offset="1" stop-color="#eef5ff"/>
+  </linearGradient>
+  <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0ea5e9"/>
+    <stop offset="1" stop-color="#2563eb"/>
+  </linearGradient>
+  <style>
+    .title{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:800;fill:#07182f}
+    .body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;fill:#17324f}
+    .label{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:700;fill:#0d2a50}
+  </style>
+</defs>
+
+<rect width="1600" height="900" rx="34" fill="url(#bg)"/>
+<path d="M0 665 C280 535 430 810 760 650 S1260 420 1600 560" fill="none" stroke="#cfe4ff" stroke-width="3"/>
+<path d="M0 715 C290 585 470 835 790 685 S1280 480 1600 610" fill="none" stroke="#deedff" stroke-width="2"/>
+
+<g transform="translate(70 62)">
+  <path d="M92 0 172 46v92l-80 46-80-46V46Z" fill="white" stroke="url(#blue)" stroke-width="10"/>
+  <path d="M120 52 91 35 46 61v62l45 26 29-17v-27l-29 17-21-12V74l21-12 29 17 22-13Z" fill="#07182f"/>
+  <path d="m94 79 26 15-26 15-26-15Z" fill="url(#blue)"/>
+</g>
+
+<text x="300" y="175" class="title" font-size="104">CLU <tspan fill="#1689f8">Latent</tspan></text>
+<text x="305" y="245" class="label" font-size="35">Local-first, portable media evidence packages</text>
+<text x="305" y="291" class="label" font-size="35">for humans and agents.</text>
+<text x="305" y="375" class="body" font-size="29">Turn video into a validated package with timestamped evidence,</text>
+<text x="305" y="418" class="body" font-size="29">keyframes, source facts, hashes, receipts, and a local viewer.</text>
+<text x="305" y="475" class="body" font-size="29">Agents can retrieve bounded evidence maps without uploading media.</text>
+<text x="305" y="540" class="label" font-size="30">No account. No cloud service. No telemetry.</text>
+
+<g transform="translate(70 680)">
+  <g>
+    <rect x="0" y="0" width="260" height="100" rx="22" fill="white" stroke="#d6e7fb"/>
+    <rect x="286" y="0" width="260" height="100" rx="22" fill="white" stroke="#d6e7fb"/>
+    <rect x="572" y="0" width="260" height="100" rx="22" fill="white" stroke="#d6e7fb"/>
+    <rect x="858" y="0" width="260" height="100" rx="22" fill="white" stroke="#d6e7fb"/>
+    <rect x="1144" y="0" width="320" height="100" rx="22" fill="white" stroke="#d6e7fb"/>
+  </g>
+  <g class="label" font-size="25" text-anchor="middle">
+    <text x="130" y="60">Local-first</text>
+    <text x="416" y="60">V1 profile</text>
+    <text x="702" y="60">Timestamped</text>
+    <text x="988" y="60">Portable</text>
+    <text x="1304" y="60">BSD-3-Clause</text>
+  </g>
+</g>
+</svg>
