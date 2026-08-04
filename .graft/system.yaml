@@ -1,0 +1,55 @@
+schema_version: 1
+
+system:
+  id: clu-latent
+  name: CLULatent
+  network: graft
+  tier: 1
+  repository_class: public-protocol-product
+  status: released
+  owner: jay
+
+repository:
+  visibility: public
+  default_branch: main
+  release_model: semantic-versioning
+
+purpose:
+  summary: >
+    Public, local-first evidence package format and reference implementation
+    for validated, timestamped, reviewable media evidence.
+
+interfaces:
+  provides:
+    - clulatent.build-video
+    - clulatent.open
+    - clulatent.validate
+    - clulatent.agent-read
+    - clulatent.pack
+  consumes:
+    - ffmpeg
+    - ffprobe
+
+owns:
+  code:
+    - public-format-profile
+    - reference-python-implementation
+    - cli
+    - validator
+    - local-viewer
+  compatibility:
+    - clulatent.profile.v1
+    - format-contract-1.0
+
+risk:
+  tier: medium
+  reasons:
+    - parses-untrusted-archives
+    - maintains-public-compatibility-contract
+
+boundaries:
+  independent_release: true
+  does_not_own:
+    - semantic-truth-certification
+    - CLU-control-plane
+    - private-grid-state
