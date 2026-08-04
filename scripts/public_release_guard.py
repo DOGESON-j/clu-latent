@@ -14,6 +14,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+SELF_RELATIVE_PATH = Path(__file__).resolve().relative_to(ROOT).as_posix()
 MAX_TEXT_BYTES = 2_000_000
 
 FORBIDDEN_BASENAMES = {
@@ -89,6 +90,9 @@ def main() -> int:
 
     for path in tracked_files():
         rel = path.relative_to(ROOT).as_posix()
+        if rel == SELF_RELATIVE_PATH:
+            continue
+
         lower_name = path.name.lower()
         lower_suffix = path.suffix.lower()
 
