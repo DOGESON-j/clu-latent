@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1320" viewBox="0 0 1200 1320" role="img" aria-labelledby="title desc">
+<title id="title">CLU Latent package anatomy</title>
+<desc id="desc">Manifest, media, events, index, and integrity layers.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8fbff"/><stop offset="1" stop-color="#eef5ff"/></linearGradient>
+  <style>
+    .title{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:800;fill:#07182f}
+    .body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;fill:#17324f}
+    .small{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;fill:#38536f}
+    .label{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-weight:700;fill:#0d2a50}
+  </style>
+</defs>
+<rect width="1200" height="1320" rx="34" fill="url(#bg)"/>
+<text x="600" y="95" class="title" font-size="70" text-anchor="middle">CLU Latent package anatomy</text>
+<text x="600" y="150" class="body" font-size="27" text-anchor="middle">What exists in the current V1 package and toolchain</text>
+<g transform="translate(80 235)">
+  <g>
+    <rect x="0" y="0" width="500" height="145" rx="28" fill="#d9ebff"/>
+    <rect x="0" y="175" width="500" height="145" rx="28" fill="#b9dcff"/>
+    <rect x="0" y="350" width="500" height="145" rx="28" fill="#79baff"/>
+    <rect x="0" y="525" width="500" height="145" rx="28" fill="#3e8cf1"/>
+    <rect x="0" y="700" width="500" height="145" rx="28" fill="#1559b8"/>
+  </g>
+  <g class="title" font-size="31">
+    <text x="48" y="62">MANIFEST</text>
+    <text x="48" y="237">MEDIA</text>
+    <text x="48" y="412">EVENTS</text>
+    <text x="48" y="587" fill="white">INDEX</text>
+    <text x="48" y="762" fill="white">INTEGRITY</text>
+  </g>
+  <g class="body" font-size="22">
+    <text x="48" y="104">identity, profile, source facts</text>
+    <text x="48" y="279">original video and optional assets</text>
+    <text x="48" y="454">timestamped JSONL evidence tracks</text>
+    <text x="48" y="629" fill="white">derived package and agent-read artifacts</text>
+    <text x="48" y="804" fill="white">hashes, receipts, validation status</text>
+  </g>
+</g>
+<g transform="translate(650 250)">
+  <g>
+    <rect x="0" y="0" width="470" height="165" rx="24" fill="white"/>
+    <rect x="0" y="190" width="470" height="165" rx="24" fill="white"/>
+    <rect x="0" y="380" width="470" height="165" rx="24" fill="white"/>
+    <rect x="0" y="570" width="470" height="165" rx="24" fill="white"/>
+    <rect x="0" y="760" width="470" height="165" rx="24" fill="white"/>
+  </g>
+  <g class="label" font-size="28">
+    <text x="34" y="50">Manifest</text><text x="34" y="240">Media</text><text x="34" y="430">Evidence tracks</text><text x="34" y="620">Derived index</text><text x="34" y="810">Validation</text>
+  </g>
+  <g class="small" font-size="21">
+    <text x="34" y="88">Package identity and compatibility profile.</text><text x="34" y="120">Known duration, source hashes, and facts.</text>
+    <text x="34" y="278">Playable source media when included.</text><text x="34" y="310">Optional keyframes and related artifacts.</text>
+    <text x="34" y="468">Structural and numeric events anchored in time.</text><text x="34" y="500">Speech and semantic lanes may be empty.</text>
+    <text x="34" y="658">Searchable package index generated from evidence.</text><text x="34" y="690">Bounded summaries and windows for agents.</text>
+    <text x="34" y="848">Profile verification, archive checks, and receipts.</text><text x="34" y="880">Compatibility does not certify semantic truth.</text>
+  </g>
+</g>
+<rect x="80" y="1165" width="1040" height="95" rx="22" fill="#e5f1ff" stroke="#7eb8ff" stroke-width="2"/>
+<text x="600" y="1210" class="label" font-size="25" text-anchor="middle">The editable form is a .clulatent directory; the portable form is a deterministic ZIP container.</text>
+<text x="600" y="1245" class="small" font-size="21" text-anchor="middle">V1 remains valid even when optional speech or semantic tracks contain zero events.</text>
+</svg>
