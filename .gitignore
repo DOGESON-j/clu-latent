@@ -25,8 +25,24 @@ report.html
 report-transcribed.html
 report*.html
 .DS_Store
+
+# Credentials, local configuration and signing material
 .env
 .env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.mobileprovision
+credentials.json
+secrets.json
+.pypirc
+.npmrc
+
+# Local runtime state
 *.log
+*.sqlite
 *.sqlite-journal
+*.db
 *.tmp
