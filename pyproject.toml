@@ -41,6 +41,11 @@ dev = [
     "bandit>=1.7",
     "tomli>=2.0; python_version < '3.11'",
 ]
+api = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "python-multipart>=0.0.9",
+]
 # Optional ML dependencies (Phase 1.7B/1.7C). The base package and
 # `clulatent ingest` work fully without either installed; they're only
 # imported/used when a caller explicitly passes --vad or --transcribe.
