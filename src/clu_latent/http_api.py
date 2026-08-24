@@ -93,7 +93,10 @@ def _write_json_atomic(path: Path, data: dict[str, Any]) -> None:
 
 
 def _read_job(job_id: str) -> dict[str, Any]:
-    if not job_id.startswith("job_") or any(c not in "0123456789abcdef_" for c in job_id):
+    if not job_id.startswith("job_"):
+        raise HTTPException(status_code=404, detail="job not found")
+    token = job_id[4:]
+    if len(token) != 32 or any(c not in "0123456789abcdef" for c in token):
         raise HTTPException(status_code=404, detail="job not found")
     path = _meta_path(job_id)
     if not path.is_file():
@@ -176,13 +179,11 @@ def _process_job(job_id: str) -> None:
             summary = reader.summary()
             validation = reader.validate()
         summary.pop("path", None)
-        validation_payload = (
-            validation.model_dump(mode="json")
-            if hasattr(validation, "model_dump")
-            else validation.__dict__
-            if hasattr(validation, "__dict__")
-            else str(validation)
-        )
+        validation_payload = {
+            "valid": bool(validation.valid),
+            "errors": list(validation.errors),
+            "warnings": list(validation.warnings),
+        }
         _update_job(
             job_id,
             status="completed",
@@ -272,6 +273,10 @@ async def create_job(file: UploadFile = File(...)) -> dict[str, Any]:
     finally:
         await file.close()
 
+    if total == 0:
+        shutil.rmtree(root, ignore_errors=True)
+        raise HTTPException(status_code=400, detail="uploaded file is empty")
+
     sha256 = hashlib.sha256()
     with input_path.open("rb") as handle:
         for chunk in iter(lambda: handle.read(_UPLOAD_CHUNK_BYTES), b""):
@@ -334,6 +339,11 @@ def get_window(
     package = _package_path(job_id)
     try:
         with open_package(package) as reader:
+            if at_ms > reader.duration_ms:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"at_ms exceeds media duration ({reader.duration_ms})",
+                )
             start_ms = max(0, at_ms - radius_ms)
             end_ms = min(reader.duration_ms, at_ms + radius_ms)
             events = reader.query_time(start_ms, end_ms)
